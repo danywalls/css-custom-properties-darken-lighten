@@ -1,0 +1,67 @@
+body {
+  /* 
+  The red hex color is #ff0000
+   we get the hsl version of red 
+   hsl(0, 100%, 50%)
+   and destruct it in variables to make easy make changes on it.
+   
+   https://htmlcolors.com/hex-to-hsl
+
+   */
+
+  /* split hsl red color values */
+  --color-red-h: 0;
+  --color-red-s: 100%;
+  --color-red-l: 50%;
+
+  /* using hsl create the default red*/
+  --color-red: hsl(var(--color-red-h), var(--color-red-s), var(--color-red-l));
+
+  /* Using de hsl and the calc css function help to add more or less ligth using + or - on the calculation and get the expected value for dark or light */
+
+  /* ligth version*/
+  --color-red-light: hsl(
+    var(--color-red-h),
+    var(--color-red-s),
+    calc(var(--color-red-l) + 15%)
+  );
+
+  /* ligth version*/
+  --color-red-darken: hsl(
+    var(--color-red-h),
+    var(--color-red-s),
+    calc(var(--color-red-l) - 25%)
+  );
+  --box-bg: violet;
+  background: lightblue;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 1rem;
+  color: white;
+  text-align: center;
+  background-color: var(--box-bg);
+  cursor: pointer;
+  transition: all 0.4s ease-in;
+}
+
+.box:hover {
+  --box-bg: black;
+}
+
+/* override --box-bg with the colors */
+.red {
+  --box-bg: var(--color-red);
+}
+
+.red-light {
+  --box-bg: var(--color-red-light);
+}
+
+.red-darken {
+  --box-bg: var(--color-red-darken);
+}
